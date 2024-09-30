@@ -91,21 +91,12 @@ app.get('/api/documents', async (req, res) => {
   }
 });
 
-
-// Load environment variables from the .env file
-require('dotenv').config();
-
-// Use the MongoDB URL from the .env file
-const mongoURI = process.env.MONGODB_URL;
-
-mongoose.connect(mongoURI, {
+mongoose.connect('mongodb://murtazamahmood640:Abidipro12@ac-qnbweaj-shard-00-00.grifjrf.mongodb.net:27017,ac-qnbweaj-shard-00-01.grifjrf.mongodb.net:27017,ac-qnbweaj-shard-00-02.grifjrf.mongodb.net:27017/?ssl=true&replicaSet=atlas-8tadkd-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-})
-.then(() => {
+}).then(() => {
   console.log('Connected to MongoDB');
-})
-.catch((error) => {
+}).catch((error) => {
   console.error('MongoDB connection error:', error);
 });
 
