@@ -16,7 +16,6 @@ const moment = require('moment'); // Use moment.js for date manipulation
 const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'fallbackdevelopmentsecret';
-
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
@@ -1739,7 +1738,11 @@ app.post('/api/feedback-project', async (req, res) => {
 });
 
 
-
+//production script
+app.use(express.static("./Frontend/build"));
+app.get("*", (req,res) => {
+  res.sendFile(path.resolve(__dirname, "Frontend", "build", "index.html"))
+})
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
